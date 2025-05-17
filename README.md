@@ -46,7 +46,7 @@ sudo apt-get install build-essential cmake-gui libeigen3-dev liblapack-dev libbl
 ```
 [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) 3.4.0 is required.
 
-[GTSAM](https://github.com/borglab/gtsam) 4.3 is required on branch develop at commit b14bae5ddb416cd00e20e2ffa7fb8ed4683b3305.
+[GTSAM](https://github.com/borglab/gtsam) develop branch is used, last commit verified working on May 15th 2025.
 
 Make sure GTSAM is built with same version as system eigen to avoid conflicts. 
 
