@@ -1,0 +1,6 @@
+[submodule "Optimization"]
+	path = Optimization
+	url = https://github.com/david-m-rosen/Optimization.git
+[submodule "Preconditioners"]
+	path = Preconditioners
+	url = https://github.com/david-m-rosen/Preconditioners.git

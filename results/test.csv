@@ -1,0 +1,15 @@
+field,i,j,value
+SDPval,0,,10235.3
+SDPval,1,,1687.01
+gradnorm,0,,1.37149
+gradnorm,1,,0.243649
+total_computation_time,,,216573
+startingRank,,,4
+endingRank,,,5
+initialization_time,0,,437.853
+initialization_time,1,,169.437
+initialization_time,2,,207.32
+elapsed_optimization_times,0,,107053
+elapsed_optimization_times,1,,82379.5
+verification_times,0,,3913.52
+verification_times,1,,114.455
