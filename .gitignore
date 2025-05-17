@@ -14,4 +14,3 @@ cmake-build-relwithdebinfo/*
 .vscode/*
 .idea/*
 ThirdParty/*
-data/*
