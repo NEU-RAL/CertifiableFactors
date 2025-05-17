@@ -16,5 +16,4 @@ data/*
 .idea/*
 ThirdParty/*
 data/*
-CMakeLists.txt
 *.txt
