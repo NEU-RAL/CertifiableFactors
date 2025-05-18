@@ -1,19 +1,12 @@
 /* ----------------------------------------------------------------------------
  * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
  * All Rights Reserved
- * Authors: Zhexin Xu, Nikolas Sanderson, et al. (see README for the full author list)
+ * Authors: Zhexin Xu, Nikolas Sanderson.
  * See LICENSE for the license information
  * -------------------------------------------------------------------------- */
 
-/*
- * @file StiefelManifold.h
- * @date Jan 1 ,2025
- * @author Zhexin Xu, Nikolas Sanderson
- * @brief  Template implementations of StiefelManifold
- */
 #ifndef STIEFELMANIFOLD_STIEFELMANIFOLD_INL_H
 #define STIEFELMANIFOLD_STIEFELMANIFOLD_INL_H
-#pragma once
 #include "StiefelManifold.h"
 #include <gtsam/base/Matrix.h>
 

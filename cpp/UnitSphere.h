@@ -1,20 +1,14 @@
 /* ----------------------------------------------------------------------------
  * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
  * All Rights Reserved
- * Authors: Zhexin Xu, Nikolas Sanderson, et al. (see README for the full author list)
+ * Authors: Zhexin Xu, Nikolas Sanderson
  * See LICENSE for the license information
  * -------------------------------------------------------------------------- */
 #ifndef STIEFELMANIFOLDEXAMPLE_UNITSPHERE_H
 #define STIEFELMANIFOLDEXAMPLE_UNITSPHERE_H
-#pragma once
 #include "StiefelManifold.h"
 #include "StiefelManifold-inl.h"
-/**
- * @file UnitSphere.h
- * @date
- * @author Jason Xu
- * @brief
- */
+
 namespace gtsam {
 
     /**
