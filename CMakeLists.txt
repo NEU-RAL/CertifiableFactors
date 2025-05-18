@@ -15,10 +15,10 @@ endif()
 
 
 # Find GTSAM components
-set(GTSAM_DIR /home/nikolas/gtsam/cmake-build-release)
-set(GTSAM_UNSTABLE_DIR /home/nikolas/gtsam/cmake-build-release)
-#set(GTSAM_DIR /home/jason/DPGO/gtsam_personal/cmake-build-release)
-#set(GTSAM_UNSTABLE_DIR /home/jason/DPGO/gtsam_personal/cmake-build-release)
+#set(GTSAM_DIR /home/nikolas/gtsam/cmake-build-release)
+#set(GTSAM_UNSTABLE_DIR /home/nikolas/gtsam/cmake-build-release)
+set(GTSAM_DIR /home/jason/DPGO/gtsam_personal/cmake-build-release)
+set(GTSAM_UNSTABLE_DIR /home/jason/DPGO/gtsam_personal/cmake-build-release)
 find_package(GTSAM REQUIRED) # Uses installed package
 if(GTSAM_FOUND)
     message(STATUS "Found GTSAM library: ${GTSAM_INCLUDE_DIR}\n")
