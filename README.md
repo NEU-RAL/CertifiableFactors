@@ -1,6 +1,5 @@
 # Simplifying Certifiable Estimation: A Factor Graph Optimization Approach
-by Zhenxin (Jason) Xu, Nikolas R. Sanderson, [David M. Rosen](https://coe.northeastern.edu/people/rosen-david/). We are affiliated with the [Robust Autonomy Lab](https://neural.lab.northeastern.edu/) at Northeastern University.
-
+by [Zhenxin (Jason) Xu](https://zhexin1904.github.io/), Nikolas R. Sanderson, [David M. Rosen](https://coe.northeastern.edu/people/rosen-david/). We are affiliated with the [Robust Autonomy Lab](https://neural.lab.northeastern.edu/) at Northeastern University.
 
 Factor graphs are the dominant paradigm for
 modeling state estimation tasks in mobile robotics, as they
@@ -41,16 +40,16 @@ The C++ implementation can be built and exported as a CMake project.
 The following installation instructions have been verified on Ubuntu 22.04:
 
 *Step 1:*  Install dependencies
-```
-sudo apt-get install build-essential cmake-gui libeigen3-dev liblapack-dev libblas-dev libsuitesparse-dev
-```
-[Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) 3.4.0 is required.
 
-[GTSAM](https://github.com/borglab/gtsam) develop branch is used, last commit verified working on May 15th 2025.
+```
+sudo apt-get install liblapack-dev libblas-dev libsuitesparse-dev
+```
+[Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)  (Make sure using the same version o external as GTSAM's to avoid conflicts, i.e., you can enable `-DGTSAM_USE_SYSTEM_EIGEN=ON` when complie GTSAM)
 
-Make sure GTSAM is built with same version as system eigen to avoid conflicts. 
+[GTSAM](https://github.com/borglab/gtsam) (tested on release/[4.3a0](https://github.com/borglab/gtsam/releases/tag/4.3a0), should also compatible with a series of versions that after **Boost Removal**, we use OptionalMatrixType but not boost optional matrix for customer factors)
 
 *Step 2:*  Clone the repository
+
 ```
 git clone git@github.com:NEU-RAL/CertifiableFactors.git
 ```
@@ -63,21 +62,27 @@ git submodule update
 ```
 
 *Step 4:*  Create build directory
+
 ```
-cd C++ && mkdir build
+mkdir build
 ```
 
 *Step 5:*  Configure build and generate Makefiles
+
 ```
 cd build && cmake ..
 ```
 
 *Step 6:*  Build code
+
 ```
 make -j
 ```
 
 *Step 7:*  Run the examples
+
+For example, when running a 2D example(d=2), and set the initial rank as p=d=2. Note that for any examples, p should be >=d.
+
 ```
-TODO:
+./your_executable d p input_file.g2o output_file.csv
 ```

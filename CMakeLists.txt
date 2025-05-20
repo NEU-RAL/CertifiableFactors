@@ -12,19 +12,16 @@ if(EIGEN3_FOUND)
     message(STATUS "Found Eigen3 library: ${EIGEN3_INCLUDE_DIR}")
 endif()
 
-
+# Set global output directory
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Find GTSAM components
-#set(GTSAM_DIR /home/nikolas/gtsam/cmake-build-release)
-#set(GTSAM_UNSTABLE_DIR /home/nikolas/gtsam/cmake-build-release)
-set(GTSAM_DIR /home/jason/DPGO/gtsam_personal/cmake-build-release)
-set(GTSAM_UNSTABLE_DIR /home/jason/DPGO/gtsam_personal/cmake-build-release)
-find_package(GTSAM REQUIRED) # Uses installed package
+find_package(GTSAM REQUIRED) 
 if(GTSAM_FOUND)
     message(STATUS "Found GTSAM library: ${GTSAM_INCLUDE_DIR}\n")
 endif()
 include_directories(${GTSAM_INCLUDE_DIR})
-set(GTSAM_LIBRARIES gtsam)   # TODO: automatic search libs
+set(GTSAM_LIBRARIES gtsam)  
 
 find_package(GTSAMCMakeTools)
 if(GTSAMCMakeTools_FOUND)
