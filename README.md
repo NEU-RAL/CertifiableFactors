@@ -93,8 +93,16 @@ make -j
 
 *Step 7:*  Run the examples
 
-For example, when running a 2D example(d=2), and set the initial rank as p=d=2. Note that for any examples, p should be >=d.
+```
+./xxx/build/bin d p input_file.g2o output_file.csv
+```
+
+For example, when running a 2D example(d=2), and set the initial rank as p=d=2(Note that for any examples, p should be >=d):
 
 ```
-./your_executable d p input_file.g2o output_file.csv
+./your_executable 2 2 input_file.g2o output_file.csv
 ```
+
+## Acknowledgement
+
+We use David M. Rosen's [Optimization](https://github.com/david-m-rosen/Optimization) and [Preconditioners](https://github.com/david-m-rosen/Preconditioners) for the eigenvalue computation of ***fast verification***.
