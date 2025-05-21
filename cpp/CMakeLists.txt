@@ -3,6 +3,7 @@ file(GLOB ex_headers "*.h")
 #install(FILES ${ex_headers} DESTINATION include/StiefelManifoldExample)
 
 # Add unit tests
+
 gtsamAddTestsGlob(tests "tests/*.cpp" "" ${PROJECT_NAME})
 
 # Add executables
@@ -13,6 +14,8 @@ file(GLOB ex_srcs "*.cpp")
 # export cmake setting to the source code
 add_library(${PROJECT_NAME} SHARED ${ex_srcs} ${ex_headers}
 )
-
 # linking with dependences
 target_link_libraries(${PROJECT_NAME} gtsam Optimization ILDL ${BLAS_LIBRARIES} ${SPQR_LIBRARIES} ${LAPACK} cholmod)
+
+get_target_property(flags ${PROJECT_NAME} COMPILE_OPTIONS)
+message(STATUS "my_target flags: ${flags}")
