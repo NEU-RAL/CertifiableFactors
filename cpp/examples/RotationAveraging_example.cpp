@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
 
     NonlinearFactorGraph inputGraph;
 
-    for (const auto & meas : measurements) {
+    for (const auto & meas : measurements.poseMeasurements) {
         double Kappa = meas.kappa;
         Vector sigmas(p*d);
         sigmas.setConstant(sqrt(1/ ( 2 * Kappa)));

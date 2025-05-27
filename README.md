@@ -29,7 +29,9 @@ achieved by state-of-the-art certifiable solvers.
 
 Presented at ICRA 2025 Atlanta Georgia in workshop ["Robots in the Wild"](https://dartmouthrobotics.github.io/icra-2025-robots-wild/).
 
-Full journal article will be submitted later this year. 
+Full journal article will be submitted later this year.
+
+![image](doc/ICRA_2025.png)
 
 
 ## Install
