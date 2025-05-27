@@ -1,6 +1,5 @@
 # Simplifying Certifiable Estimation: A Factor Graph Optimization Approach
-by Zhenxin (Jason) Xu, Nikolas R. Sanderson, [David M. Rosen](https://coe.northeastern.edu/people/rosen-david/). We are affiliated with the [Robust Autonomy Lab](https://neural.lab.northeastern.edu/) at Northeastern University.
-
+by [Zhenxin (Jason) Xu](https://zhexin1904.github.io/), Nikolas R. Sanderson, [David M. Rosen](https://coe.northeastern.edu/people/rosen-david/). We are affiliated with the [Robust Autonomy Lab](https://neural.lab.northeastern.edu/) at Northeastern University.
 
 Factor graphs are the dominant paradigm for
 modeling state estimation tasks in mobile robotics, as they
@@ -43,16 +42,28 @@ The C++ implementation can be built and exported as a CMake project.
 The following installation instructions have been verified on Ubuntu 22.04:
 
 *Step 1:*  Install dependencies
-```
-sudo apt-get install build-essential cmake-gui libeigen3-dev liblapack-dev libblas-dev libsuitesparse-dev
-```
-[Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) 3.4.0 is required.
 
-[GTSAM](https://github.com/borglab/gtsam) develop branch is used, last commit verified working on May 15th 2025.
+```
+sudo apt-get install liblapack-dev libblas-dev libsuitesparse-dev
+```
+[Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)  (Make sure using the same version o external as GTSAM's to avoid conflicts, i.e., you can enable `-DGTSAM_USE_SYSTEM_EIGEN=ON` when compile GTSAM)
 
-Make sure GTSAM is built with same version as system eigen to avoid conflicts. 
+[GTSAM](https://github.com/borglab/gtsam) (tested on release/[4.3a0](https://github.com/borglab/gtsam/releases/tag/4.3a0), should also compatible with a series of versions that after **Boost Removal**, we use OptionalMatrixType but not boost optional matrix for customer factors)
+
+(If you have multiple GTSAM versions in your machine, and do not want to destroy the environment. The easiest thing to do may be just specify the path to your GTSAM compatible with our project by :
+
+```
+set(GTSAM_DIR "path to your /gtsam/build")
+set(GTSAM_UNSTABLE_DIR "path to your /gtsam/build")
+## Above your find_package(GTSAM REQUIRED) and :
+set(GTSAMCMakeTools_DIR "path to your /gtsam/cmake")
+## Above your find_package(GTSAMCMakeTools REQUIRED)
+```
+
+)
 
 *Step 2:*  Clone the repository
+
 ```
 git clone git@github.com:NEU-RAL/CertifiableFactors.git
 ```
@@ -65,21 +76,35 @@ git submodule update
 ```
 
 *Step 4:*  Create build directory
+
 ```
-cd C++ && mkdir build
+mkdir build
 ```
 
 *Step 5:*  Configure build and generate Makefiles
+
 ```
 cd build && cmake ..
 ```
 
 *Step 6:*  Build code
+
 ```
 make -j
 ```
 
 *Step 7:*  Run the examples
+
 ```
-TODO:
+./xxx/build/bin d p input_file.g2o output_file.csv
 ```
+
+For example, when running a 2D example(d=2), and set the initial rank as p=d=2(Note that for any examples, p should be >=d):
+
+```
+./your_executable 2 2 input_file.g2o output_file.csv
+```
+
+## Acknowledgement
+
+We use David M. Rosen's [Optimization](https://github.com/david-m-rosen/Optimization) and [Preconditioners](https://github.com/david-m-rosen/Preconditioners) for the eigenvalue computation of ***fast verification***.

@@ -1,16 +1,15 @@
-//
-// Created by jason on 4/29/25.
-//
-// Created by nikolas on 4/27/25.
-//
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 // Base class for certifiable problem
 // Mainly including convertion between factor/factor_graph and Riemannian staircase implementation
 
 #ifndef STIEFELMANIFOLDEXAMPLE_CERTIFIABLE_PROBLEM_H
 #define STIEFELMANIFOLDEXAMPLE_CERTIFIABLE_PROBLEM_H
 
-
-#pragma once
 #include "utils.h"
 #include <gtsam/base/timing.h>
 #include <gtsam/slam/InitializePose.h>

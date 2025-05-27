@@ -1,11 +1,12 @@
-//
-// Created by nikolas on 5/2/25.
-//
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 
 #ifndef CERTIFIABLERESULTS_H
 #define CERTIFIABLERESULTS_H
-
-#pragma once
 
 #include "types.h"
 #include <gtsam/base/Matrix.h>

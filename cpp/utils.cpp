@@ -1,14 +1,9 @@
-//
-// Created by jason on 1/27/25.
-//
-
-/**
- * @file utils.cpp
- * @date
- * @author Jason Xu, Nikolas Sanderson
- * @brief
- */
-
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 #include <algorithm>
 #include <fstream>
 #include <iostream>

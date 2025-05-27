@@ -1,10 +1,12 @@
-//
-// Created by jason on 4/30/25.
-//
-
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 #ifndef STIEFELMANIFOLDEXAMPLE_CERTIFIABLEPGO_H
 #define STIEFELMANIFOLDEXAMPLE_CERTIFIABLEPGO_H
-#pragma once
+
 #include "Certifiable_problem.h"
 
 /**

@@ -1,6 +1,9 @@
-//
-// Created by jason on 4/29/25.
-//
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 #include "../CertifiableRA.h"
 
 using namespace std;

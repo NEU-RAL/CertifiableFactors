@@ -1,6 +1,9 @@
-//
-// Created by nikolas on 5/5/25.
-//
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 
 #ifndef CERTIFIABLEPROBLEMOPTS_H
 #define CERTIFIABLEPROBLEMOPTS_H

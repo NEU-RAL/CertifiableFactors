@@ -1,23 +1,9 @@
-//
-// Created by jason on 2/4/25.
-//
 /* ----------------------------------------------------------------------------
-
- * GTSAM Copyright 2010-2019, Georgia Tech Research Corporation,
- * Atlanta, Georgia 30332-0415
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
  * All Rights Reserved
- * Authors: Frank Dellaert, et al. (see THANKS for the full author list)
-
+ * Authors: Zhexin Xu, Nikolas Sanderson
  * See LICENSE for the license information
-
  * -------------------------------------------------------------------------- */
-
-/**
- * @file StiefelManifoldPriorFactor.cpp
- * @date
- * @author JasonXu
- * @brief
- */
 
 #include <gtsam/base/timing.h>
 #include <gtsam/nonlinear/NonlinearFactorGraph.h>

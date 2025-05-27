@@ -1,24 +1,9 @@
-//
-// Created by jason on 1/12/25.
-//
 /* ----------------------------------------------------------------------------
-
- * GTSAM Copyright 2010-2019, Georgia Tech Research Corporation,
- * Atlanta, Georgia 30332-0415
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
  * All Rights Reserved
- * Authors: Frank Dellaert, et al. (see THANKS for the full author list)
-
+ * Authors: Zhexin Xu, Nikolas Sanderson
  * See LICENSE for the license information
-
  * -------------------------------------------------------------------------- */
-
-/**
- * @file RaFactor.cpp
- * @date
- * @author Jason Xu, Nikolas Sanderson
- * @brief
- */
-
 #include <gtsam/base/timing.h>
 #include <gtsam/nonlinear/NonlinearFactorGraph.h>
 #include <gtsam/slam/FrobeniusFactor.h>

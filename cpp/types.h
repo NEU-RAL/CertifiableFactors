@@ -1,15 +1,12 @@
-//
-// Created by jason on 1/27/25.
-//
-/** A set of typedefs describing the types of matrices and factorizations that
- * will be used in the SE-Sync algorithm.
- *
- * Copyright (C) 2016 - 2018 by David M. Rosen (dmrosen@mit.edu)
- */
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 
 #ifndef STIEFELMANIFOLDEXAMPLE_TYPES_H
 #define STIEFELMANIFOLDEXAMPLE_TYPES_H
-#pragma once
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
 typedef double Scalar;

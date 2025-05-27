@@ -1,21 +1,12 @@
 /* ----------------------------------------------------------------------------
  * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
  * All Rights Reserved
- * Authors: Zhexin Xu, Nikolas Sanderson, et al. (see README for the full author list)
+ * Authors: Zhexin Xu, Nikolas Sanderson
  * See LICENSE for the license information
  * -------------------------------------------------------------------------- */
 
 #ifndef STIEFELMANIFOLDEXAMPLE_STIEFELMANIFOLDPRIORFACTOR_H
 #define STIEFELMANIFOLDEXAMPLE_STIEFELMANIFOLDPRIORFACTOR_H
-
-/**
- * @file   StiefelManifoldPriorFactor.h
- * @date
- * @author Jason Xu
- * @brief  Prior for Stiefel Manifold Factor
- */
-
-#pragma once
 
 #include <gtsam/geometry/Rot2.h>
 #include <gtsam/geometry/Rot3.h>

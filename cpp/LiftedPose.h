@@ -1,19 +1,12 @@
 /* ----------------------------------------------------------------------------
  * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
  * All Rights Reserved
- * Authors: Zhexin Xu, Nikolas Sanderson, et al. (see README for the full author list)
+ * Authors: Zhexin Xu, Nikolas Sanderson
  * See LICENSE for the license information
  * -------------------------------------------------------------------------- */
 #ifndef STIEFELMANIFOLDEXAMPLE_LIFTEDPOSE_H
 #define STIEFELMANIFOLDEXAMPLE_LIFTEDPOSE_H
 
-/**
- * @file   LiftedPose.h
- * @date
- * @author Jason Xu, Nikolas Sanderson
- * @brief  LiftedPose
- */
-#pragma once
 #include <gtsam/base/Matrix.h>
 #include <gtsam/dllexport.h>
 #include <gtsam/base/Vector.h>

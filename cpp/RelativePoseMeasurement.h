@@ -1,17 +1,13 @@
-//
-// Created by jason on 1/27/25.
-//
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 
 #ifndef STIEFELMANIFOLDEXAMPLE_RELATIVEPOSEMEASUREMENT_H
 #define STIEFELMANIFOLDEXAMPLE_RELATIVEPOSEMEASUREMENT_H
 
-/**
- * @file RelativePoseMeasurements.h
- * @date
- * @author Jason Xu
- * @brief
- */
-#pragma once
 #include <Eigen/Dense>
 #include <iostream>
 

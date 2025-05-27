@@ -1,26 +1,14 @@
-//
-// Created by jason on 1/27/25.
-//
-/** This file provides a convenient set of utility functions for reading in a
-set of pose-graph SLAM measurements and constructing the corresponding data
-matrices used in the SE-Sync algorithm.
- *
- * Copyright (C) 2016 - 2022 by David M. Rosen (dmrosen@mit.edu)
- */
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson, David M. Rosen.
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 #ifndef STIEFELMANIFOLDEXAMPLE_UTILS_H
 #define STIEFELMANIFOLDEXAMPLE_UTILS_H
 
-/**
- * @file Utils.h
- * @date
- * @author Jason Xu, Nikolas Sanderson
- * @brief
- */
-#pragma once
 #include <string>
-
 #include <Eigen/Sparse>
-
 #include "RelativePoseMeasurement.h"
 #include "types.h"
 

@@ -1,19 +1,11 @@
-//
-// Created by jason on 2/4/25.
-//
-
+/* ----------------------------------------------------------------------------
+ * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
+ * All Rights Reserved
+ * Authors: Zhexin Xu, Nikolas Sanderson
+ * See LICENSE for the license information
+ * -------------------------------------------------------------------------- */
 #ifndef STIEFELMANIFOLDEXAMPLE_LIFTEDPOSEPRIORFACTOR_H
 #define STIEFELMANIFOLDEXAMPLE_LIFTEDPOSEPRIORFACTOR_H
-
-
-/**
- * @file   LiftedPosePriorFactor.h
- * @date
- * @author Jason Xu
- * @brief  Prior for LiftedPose
- */
-
-#pragma once
 
 #include <gtsam/geometry/Rot2.h>
 #include <gtsam/geometry/Rot3.h>

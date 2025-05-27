@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------
  * Copyright 2025, Northeastern University Robust Autonomy Lab, * Boston, MA 02139
  * All Rights Reserved
- * Authors: Zhexin Xu, Nikolas Sanderson, et al. (see README for the full author list)
+ * Authors: Zhexin Xu, Nikolas Sanderson
  * See LICENSE for the license information
  * -------------------------------------------------------------------------- */
 
