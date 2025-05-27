@@ -1,5 +1,4 @@
 *.dot
-*.png
 *.log
 *.asv
 build/*
