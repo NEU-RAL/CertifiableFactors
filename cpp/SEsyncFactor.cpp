@@ -94,81 +94,89 @@ namespace gtsam {
 //******************************************************************************
     template <size_t d>
     /**
-     * @brief Compute the Jacobians of the SEsyncFactor error with respect to each lifted pose variable.
+     * @brief Compute the Jacobians of the SEsyncFactor error w.r.t. each lifted pose variable.
      *
-     * This method computes and, if requested, populates the Jacobian matrices H1 and H2
-     * for the SE synchronization factor. The error consists of both the Stiefel manifold
-     * component (rotation) and the translation component. H1 and H2 are resized and filled
-     * to represent the partial derivatives of the error with respect to Q1 and Q2, respectively.
+     * The SE synchronization factor error has two parts:
+     *   1. A rotation error on the Stiefel manifold (Y1, Y2).
+     *   2. A translation error (t1, t2) linear in Euclidean space.
      *
-     * @tparam d      Spatial dimension of the synchronization (2 for 2D, 3 for 3D).
-     * @param Q1      The first lifted pose variable, providing Y1 (Stiefel manifold) and t1 (translation).
-     * @param Q2      The second lifted pose variable, providing Y2 and t2.
-     * @param H1      Optional pointer to the output Jacobian w.r.t. Q1. If non-null, this matrix
-     *                is resized to ((p_*d_ + p_) × (Dim(Y1) + p_)) and populated.
-     * @param H2      Optional pointer to the output Jacobian w.r.t. Q2. If non-null, this matrix
-     *                is resized to ((p_*d_ + p_) × (Dim(Y2) + p_)) and populated.
+     * We use the common symbol 'd' instead of the partial derivative symbol ∂.
+     * The full Jacobian H for Q1 or Q2 therefore stacks two blocks:
+     *   H = [ d e_rot / d Y    d e_rot / d t ]
+     *       [ d e_trans / d Y  d e_trans / d t ]
+     *
+     * For Q1:
+     *   • d e_rot / d Y1 =  -(I_p x M1^T) · G1
+     *   • d e_trans / d Y1 =  –[V^T x I_p] · G1    (each row i: –V^T placed at cols i*d … i*d+d–1)
+     *   • d e_trans / d t1 =  –I_p
+     *
+     * For Q2:
+     *   • d e_rot / d Y2 =  +I_{p·d} · G2
+     *   • d e_trans / d Y2 =  0 (no coupling)
+     *   • d e_trans / d t2 =  +I_p
+     *
+     * @tparam d Spatial dimension (2 for 2D, 3 for 3D).
+     * @param Q1 First lifted pose, with Y1 (rotation basis) and t1 (translation).
+     * @param Q2 Second lifted pose, with Y2 and t2.
+     * @param H1 If non-null, resized to ((p_*d + p_) × (Dim(Y1) + p_)) and filled.
+     * @param H2 If non-null, resized to ((p_*d + p_) × (Dim(Y2) + p_)) and filled.
      */
     void SEsyncFactor<d>::fillJacobians(const LiftedPoseDP &Q1, const LiftedPoseDP &Q2,
                                     OptionalMatrixType H1,
                                     OptionalMatrixType H2) const {
-        const StiefelManifoldKP Y1 = Q1.get_Y();
-        const StiefelManifoldKP Y2 = Q2.get_Y();
-        const Vector t1 = Q1.get_t();
-        const Vector t2 = Q2.get_t();
-        const size_t St_OutDim = p_ * d_;
-        const size_t St_dim = StiefelManifoldKP::Dimension(d_, p_); // Better use Dimension of some dim function later
-        const size_t t_OutDim = p_;
-        const size_t t_dim = p_;
-        const Matrix M1 = Y1.matrix();
-        const Matrix M2 = Y2.matrix();
+        // Extract rotation and translation parts
+        const StiefelManifoldKP Y1 = Q1.get_Y(); // Stiefel part for lifted pose 1
+        const StiefelManifoldKP Y2 = Q2.get_Y(); // Stiefel part for lifted pose 2
+        const Matrix M1 = Y1.matrix();  // Matrix of Stiefel part
+        const Matrix M2 = Y2.matrix();  // Matrix of Stiefel part
+        const Vector t1 = Q1.get_t();  // translation for lifted pose 1
+        const Vector t2 = Q2.get_t();  // translation for lifted pose 2
 
+        // Dimensions
+        const size_t St_OutDim = p_ * d_; // rows for rotation error
+        const size_t St_dim = StiefelManifoldKP::Dimension(d_, p_); // cols in G basis
+        const size_t t_OutDim = p_; // rows for translation error
+        const size_t t_dim = p_; // cols for t
 
         if (H1) {
-            // If asked, calculate Jacobian H as -(I_p \otimes M) * G
-            // M = dxd, I_p = pxp, G = (d*p)xDim(p), result should be dim x Dim(p)
-//            H1->resize(St_dim, Y1.G_.cols()); // Initialize H with zeros
+            // Resize and zero out full Jacobian for Q1:
+            //   rows = St_OutDim + t_OutDim
+            //   cols = St_dim + t_dim
             H1->resize(St_OutDim + t_OutDim, Y1.G_.cols() + p_);
             H1->setZero();
+
+            // Rotation: d e_rot / d Y1 = -(I_p x M1^T) * G1
             Matrix dF_dM1 = Matrix::Zero(p_ * d, p_ * d);
             Matrix I_p = Matrix::Identity(p_, p_);
-
             for (int i = 0; i < d; ++i) {
                 for (int j = 0; j < d; ++j) {
                     dF_dM1.block(i * p_, j * p_, p_, p_) -= M_(j, i) * I_p;
                 }
             }
             H1->block(0, 0, St_OutDim, St_dim) = dF_dM1 * Y1.G_;
-                // Initialize J as a zero matrix of size (p, p * d)
-                Matrix dt_dY = Matrix::Zero(t_OutDim, St_OutDim);
-                // Fill J using the explicit Kronecker product expansion
-//                for (int i = 0; i < p_; ++i) {
-//                    for (int j = 0; j < d_; ++j) {
-//                        dt_dY(i, i * d + j) = -V_(j);  // Each row gets a copy of -T^T
-//                    }
-//                    dt_dY.block(i, i * d_, 1, d_) = -V_.transpose();
-//                    dt_dY.row(i) = -V_.transpose();
-//                }
+
+            // Translation wrt Y: d e_trans / d Y1 = -[V^T x I_p] * G1
+            Matrix dt_dY = Matrix::Zero(t_OutDim, St_OutDim);
             for (int j = 0; j < d; ++j) {
                 dt_dY.block(0, j * p_, p_, p_) -= V_(j) * Matrix ::Identity(p_, p_);
             }
             H1->block(St_OutDim, 0, t_OutDim, St_dim) = dt_dY * Y1.G_;
+
+            // Translation wrt t: d e_trans / d t1 = -I_p
             H1->block(St_OutDim, St_dim, t_OutDim, t_dim) =
                     -Matrix::Identity(t_OutDim, t_dim);
-
-
         }
         if (H2) {
             //
             H2->resize(St_OutDim + t_OutDim, Y2.G_.cols() + p_);
             H2->setZero();
+            // Rotation: d e_rot / d Y2 = +I_{p·d} * G2
             Matrix dF_dM2 = Matrix::Identity(p_*d, p_*d);
             H2->block(0, 0, St_OutDim, St_dim) = dF_dM2 * Y2.G_;
+            // Translation wrt t: d e_trans / d t2 = +I_p
             H2->block(St_OutDim, St_dim, t_OutDim, t_dim) =
                     Matrix::Identity(t_OutDim, t_dim);
-
         }
-
     }
 //******************************************************************************
     template <size_t d>
@@ -220,7 +228,6 @@ namespace gtsam {
         // Error of translation part
         const size_t trans_dim = p_; // lifted translation dimension ( R^d -> R^p)
         Vector error_trans(trans_dim);
-//        error_trans = LiftedPoseDP::LiftToRp(t2, p_) -  LiftedPoseDP::LiftToRp(t1, p_) - M1 * V_;
         error_trans = t2 -  t1 - M1 * V_;
 
         this->fillJacobians(Q1, Q2, H1, H2);

@@ -98,13 +98,14 @@ namespace gtsam {
      * corresponding Jacobian blocks.
      *
      * The Jacobian with respect to Q1 is given by:
-     *   H1 = -(I_p ⊗ M) * G1
+     *   H1 = -(I_p ⊗ Mᵀ) * G1
      * where M is the measured rotation matrix, I_p is the p×p identity, and
-     * G1 is the basis matrix stored in Q1.
+     * G1 is the basis generator matrix of the Stiefel manifold Q1. Note the transpose arises because
+     * we linearize in the manifold tangent.
      *
-     * The Jacobian with respect to Q2 is given by:
-     *   H2 = I_{pd} * G2
-     * where I_{pd} is the pd×pd identity and G2 is the basis matrix in Q2.
+     * The Jacobian with respect to Q2 is simply:
+     *   H2 = (I_{p·d}) * G2
+     * where I_{p·d} is the (p·d)×(p·d) identity and G2 is the basis generator matrix of the Stiefel manifold Q2.
      *
      * @tparam d        Dimensionality of the rotation component (rows of the Stiefel manifold).
      * @param Q1        First Stiefel manifold variable.
@@ -124,9 +125,10 @@ namespace gtsam {
 
         if (H1) {
             // If asked, calculate Jacobian H as -(I_p \otimes M) * G
-            // M = dxd, I_p = pxp, G = (d*p)xDim(p), result should be dim x Dim(p)
+            // Resize output: rows = p*d, cols = dimension of manifold tangent at Q1
             H1->resize(dim, Q1.G_.cols()); // Initialize H with zeros
-
+            // Build the Kronecker product -(I_p ⊗ Mᵀ):
+            //   - For each (i,j), block at (i*p, j*p) is -Mᵀ(j,i) * I_p
             Matrix dF_dM1 = Matrix::Zero(p_ * d, p_ * d);
             Matrix I_p = Matrix::Identity(p_, p_);
 
@@ -135,17 +137,17 @@ namespace gtsam {
                     dF_dM1.block(i * p_, j * p_, p_, p_) -= M_(j, i) * I_p;
                 }
             }
+            // Finally multiply by the basis G1 to get the Jacobian H1
             *H1 = dF_dM1 *Q1.G_;
-
-
         }
         if (H2) {
-            //
+            // Resize output: rows = p*d, cols = dimension of manifold tangent at Q2
             H2->resize(dim, Q2.G_.cols());
+            // Here the Jacobian is simply the identity mapping on the tangent:
+            //   H2 = I_{p·d} * G2
             Matrix dF_dM2 = Matrix::Identity(p_*d, p_*d);
             *H2 = dF_dM2 * Q2.G_;
         }
-
     }
 //******************************************************************************
     template <size_t d>
@@ -182,10 +184,8 @@ namespace gtsam {
         const size_t dim = p_ * d; // Stiefel manifold dimension
         Vector fQ2(dim), hQ1(dim);
 
-        //
         fQ2 << Eigen::Map<const Matrix>(M2.data(), dim, 1);
 
-        //
         const Matrix Q1R12 = M1 * M_;
         hQ1 << Eigen::Map<const Matrix>(Q1R12.data(), dim, 1);
 

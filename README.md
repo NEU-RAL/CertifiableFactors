@@ -107,11 +107,11 @@ For example, when running a 2D example(d=2), and set the initial rank as p=d=2(N
 
 ## Ongoing work
 
-Landmark-slam and range-aided example will be released soon。
+Landmark-slam and range-aided example will be released soon.
 
 ## Collaboration!!!
 
-We believe that certifiable factors offer a promising approach to bring certifiable estimation into practice. If you're interested—whether it's expanding to more certifiable examples or using certifiable estimation as the backend of your real-time SLAM system—we’d be excited to collaborate with you!
+We believe that certifiable factors offer a promising approach to bring certifiable estimation into practice. If you're interested—whether it's expanding to more certifiable examples or using certifiable estimation as the backend of your real-time state estimation system—we’d be excited to collaborate with you!
 
 ## Acknowledgement
 
