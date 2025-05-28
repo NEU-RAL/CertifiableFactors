@@ -28,8 +28,6 @@ achieved by state-of-the-art certifiable solvers.
 
 Presented at ICRA 2025 Atlanta Georgia in workshop ["Robots in the Wild"](https://dartmouthrobotics.github.io/icra-2025-robots-wild/).
 
-Full journal article will be submitted later this year.
-
 ![image](doc/ICRA_2025.png)
 
 
@@ -105,6 +103,19 @@ For example, when running a 2D example(d=2), and set the initial rank as p=d=2(N
 ./your_executable 2 2 input_file.g2o output_file.csv
 ```
 
+## Changelog
+
+## Ongoing work
+
+Landmark-slam and range-aided example will be released soon。
+
+## Collaboration!!!
+
+We believe that certifiable factors offer a promising approach to bring certifiable estimation into practice. If you're interested—whether it's expanding to more certifiable examples or using certifiable estimation as the backend of your real-time SLAM system—we’d be excited to collaborate with you!
+
 ## Acknowledgement
 
 We use David M. Rosen's [Optimization](https://github.com/david-m-rosen/Optimization) and [Preconditioners](https://github.com/david-m-rosen/Preconditioners) for the eigenvalue computation of ***fast verification***.
+
+
+
